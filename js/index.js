@@ -29,111 +29,52 @@ Last updated: November 2024.
 let doubleWordScore = [3, 13];
 let doubleLetterScore = [7, 9];
 let bc = 15;
-let rc = 15;
-
+let rc = 7;
+let rt = 95;
+let hs = 0;
+let total_score = 0;
 
 $(async function () {
     setup();
-    // ---------------------------------------------------------------------------
-    //                          BOARD
-    // ---------------------------------------------------------------------------
-    // for (let i = 0; i < bc; i++) {
-    //     $('#placeholder').append('<div class="slot"></div>');
-    // }
-
-
-    // doubleWordScore.forEach(i => {
-    //     $(`#placeholder .slot:nth-child(${i})`).addClass('slot double-word-score');
-    // });
-
-    // doubleLetterScore.forEach(i => {
-    //     $(`#placeholder .slot:nth-child(${i})`).addClass('slot double-letter-score');
-    // });
-
-
-    // $('.board').css({
-    //     'width': `${5 * bc}vw`,
-    //     'grid-template-columns': `repeat(${bc}, 1fr)`,
-    // })
-
-    // ---------------------------------------------------------------------------
-    //                          RACK
-    // ---------------------------------------------------------------------------
-
-
-    // let rc = 15;
-    // // await setRack(rc);
-
-    // $('#box1 .slot').eq(1).append(`<div class="small-box" id="box${1}">A</div>`);
-    // $('#box1 .slot').eq(2).append(`<div class="small-box" id="box${2}">S</div>`);
-
-
-    // $('.rack').css({
-    //     'width': `${5 * rc}vw`,
-    //     'grid-template-columns': `repeat(${rc}, 1fr)`,
-    // })
-
-    // ---------------------------------------------------------------------------
-    //                       DRAG & DROP
-    // ---------------------------------------------------------------------------
-
-    // $(".small-box").draggable({
-    //     revert: "invalid", // Revert to the original position if not dropped in a valid droppable
-    //     containment: "body", // Restrict dragging to the body
-    //     stack: ".small-box" // Ensure draggable boxes stack properly
-    // });
-
-    // // Make each slot droppable
-    // $(".slot").droppable({
-    //     accept: ".small-box", // Accept only small boxes
-    //     tolerance: "intersect", // The draggable must fully fit inside the slot to snap
-    //     drop: async function (event, ui) {
-
-    //         if ($(this).children(".small-box").length > 0) {
-    //             // alert("This slot is already occupied!"); // Notify the user
-    //             ui.draggable.draggable("option", "revert", true); // Force the box to revert
-    //             return;
-    //         }
-
-    //         // Append the small box to the slot
-    //         $(this).append(ui.draggable);
-
-    //         // Reset the position to align the small box perfectly within the slot
-    //         ui.draggable.css({
-    //             top: 0,
-    //             left: 0
-    //         });
-        
-
-    //         let slotIndex = $(this).index() + 1;
-
-    //         if ((doubleLetterScore.includes(slotIndex) || doubleWordScore.includes(slotIndex)) 
-    //             && (!$(this).hasClass('rack-slot'))) {
-
-    //             ui.draggable.addClass('box-hover');
-    //         } else {
-    //                 ui.draggable.removeClass('box-hover');
-    //                 ui.draggable.removeClass('box-hover');
-    //         }
-    //         $('#score').html('SCORE: ' + await extractWordScore());
-    //         $('#isword').html('VALIDITY: ' + isWord());
-    //         $('#lookup').html('DICT: ' + await lookup(isWord().toLowerCase()));
-
-
-    //     }
-    // });
+    $('#remaining').html('RT: ' + (rt));        
+    $('#highest').html('HS: ' + (hs));   
 
     // ---------------------------------------------------------------------------
     //                          BUTTON
     // ---------------------------------------------------------------------------
-    $("#myButton").click(async function() {
+    $("#startOveBtn").click(async function() {
+        rt = 95;
+        hs = 0;
+        total_score = 0;
+        $('#remaining').html('RT: ' + (rt));        
+        $('#highest').html('HS: ' + (hs));
+        $('#total').html('TOTAL: ' + (total_score));
+        $('#score').html('SCORE: ' + 0);
+        $('#isword').html('VALIDITY: ');
+        $('#lookup').html('DICT: ');     
+
         await setup();
-        // isWord();
-        // console.log('generateDeck():' + await generateDeck());
-        // console.log('getLetterScore : ' + await getLetterScore('A'));
-        // $('#isword').html('VALIDITY: ' + isWord());
-        // $('#score').html('SCORE: ' + await extractWordScore(isWord()));
-        // await setRack();
+    });
+
+    $("#nextWordBtn").click(async function() {
+
+        if (await lookup(getWord().toLowerCase())) {
+            rt -= getWord().length;
+            $('#remaining').html('RT: ' + (rt));        
+
+            if (await extractWordScore() >= hs) {
+                hs = await extractWordScore();
+            }
+            $('#highest').html('HS: ' + (hs));
+            total_score += await extractWordScore();
+            $('#total').html('TOTAL: ' + (total_score));
+            $('#score').html('SCORE: ' + 0);
+            $('#isword').html('VALIDITY: ');
+            $('#lookup').html('DICT: ');            
+        }
+
+        await setup();
+
     });
 });
 
@@ -152,10 +93,12 @@ async function setup() {
 
     doubleWordScore.forEach(i => {
         $(`#placeholder .slot:nth-child(${i})`).addClass('slot double-word-score');
+        // $(`#placeholder .slot:nth-child(${i})`).append('<p id="double-word-score-text">DOUBLE<br>WORD<br>SCORE</p>');
     });
 
     doubleLetterScore.forEach(i => {
         $(`#placeholder .slot:nth-child(${i})`).addClass('slot double-letter-score');
+        // $(`#placeholder .slot:nth-child(${i})`).append('<p id="double-letter-score-text">DOUBLE<br>LETTER<br>SCORE</p>');
     });
 
     $('.board').css({
@@ -181,7 +124,7 @@ async function setup() {
 
     console.log('RD >> ' + rd);
     for (let i = 0; i < rc; i++) {
-        $('#box1 .slot').eq(i).append(`<div class="small-box" id="box${rd[i]}"><span>${rd[i]}</span> <span class="score">${ls[i]}</span></div>`);
+        $('#box1 .slot').eq(i).append(`<div class="small-box" id="box${rd[i]}"><span class="letter">${rd[i]}</span> <span class="score">${ls[i]}</span></div>`);
     }
 
     $('.rack').css({
@@ -206,20 +149,16 @@ async function setup() {
         drop: async function (event, ui) {
 
             if ($(this).children(".small-box").length > 0) {
-                // alert("This slot is already occupied!"); // Notify the user
                 ui.draggable.draggable("option", "revert", true); // Force the box to revert
                 return;
             }
 
-            // Append the small box to the slot
             $(this).append(ui.draggable);
 
-            // Reset the position to align the small box perfectly within the slot
             ui.draggable.css({
                 top: 0,
                 left: 0
             });
-        
 
             let slotIndex = $(this).index() + 1;
 
@@ -231,10 +170,31 @@ async function setup() {
                     ui.draggable.removeClass('box-hover');
                     ui.draggable.removeClass('box-hover');
             }
-            $('#score').html('SCORE: ' + await extractWordScore());
-            $('#isword').html('VALIDITY: ' + isWord());
-            $('#lookup').html('DICT: ' + await lookup(isWord().toLowerCase()));
 
+            if (await lookup(getWord().toLowerCase())) {
+                $('#score').html('SCORE: ' + await extractWordScore());      
+            } else {
+                $('#score').html('SCORE: ');      
+            }
+
+
+
+
+            $('#isword').html('VALIDITY: ' + getWord());
+
+            if (await lookup(getWord().toLowerCase())) {
+                $('#lookup').html('DICT:  ' + "✅");
+            } else {
+                $('#lookup').html('DICT:  ' + "❌");
+            }
+
+            if (await lookup(getWord().toLowerCase())) {
+                $('#placeholder').children().each(function() { $(this).children().eq(0).addClass('small-box-green')});
+            } else {
+                $('#placeholder').children().each(function() { $(this).children().eq(0).removeClass('small-box-green')});
+            }
+
+            $('#box1').children().each(function() { $(this).children().eq(0).removeClass('small-box-green')});
 
         }
     });
@@ -275,7 +235,7 @@ async function extractWordScore() {
 // ---------------------------------------------------------------------------
 //                          isWord
 // ---------------------------------------------------------------------------
-function isWord() {
+function getWord() {
     let w = "";
     $("#placeholder").each(function() {
         $(this).children().each(function() {
@@ -404,6 +364,8 @@ async function getLetterScore(letter) {
 // ---------------------------------------------------------------------------
 async function lookup(word) {
     try {
+
+        if (word.length <= 1) { return false; }
         // Fetch the JSON file
         const response = await fetch('./graphics_data/dictionary.json');
         if (!response.ok) {
@@ -428,3 +390,35 @@ async function lookup(word) {
         console.error(`Error: ${error.message}`);
     }
 }
+
+// ---------------------------------------------------------------------------
+//                          TODO
+// ---------------------------------------------------------------------------
+/*
+style texts
+reset text after click me
+change click me name
+add text to red/blue boxes
+
+after playing a word, only the number of letter tiles needed to bring the player’s “hand” back
+to 7 tiles are selected
+
+any number of words can be played until the player wishes to quit or depletes all tiles
+
+Except for the first letter, all sub-subsequent letters must be placed directly next to or below
+another letter with no space. Else, they will bounce back to the “rack”.
+
+if the word doesn't pass dict, it cannot be submitted
+
+remaining tiles (do it the easy way) (total = 95, after each submission, deduct)
+highest score
+add up all the score
+reset button
+next word button
+
+double check rubric
+
+remove comments
+update header comments
+push to github
+*/

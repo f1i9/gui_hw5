@@ -31,6 +31,17 @@ Last updated: November 2024.
 </head>
 <body>
 
+    <div id="message-container">
+        <p id="score">SCORE: </p>
+        <p id="total">TOTAL: </p>
+        <p id="highest">HIGHEST SCORE: </p>
+        <p id="remaining">REMAINING TILES:</p>
+        <!-- <p id="isword">VALIDITY: </p> -->
+        <p id="lookup">DICT: </p>
+        <p id="double-word-score-text">RED: DOUBLE WORD</p>
+        <p id="double-letter-score-text">BLUE: DOUBLE LETTER</p>
+    </div>
+
     <div id="placeholder" class="board">
     </div>
 
@@ -42,13 +53,11 @@ Last updated: November 2024.
         <div class="slot"></div> -->
     </div>
 
-    <div>
-        <p id="score"></p>
-        <p id="isword"></p>
-        <p id="lookup"></p>
+    <div id="button-container">
+        <button id="startOveBtn" class="button btn-word">Start Over</button>
+        <button id="nextWordBtn" class="button btn-word">Next Word</button>    
     </div>
 
-    <button id="myButton" class="button btn-word">Click Me!</button>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
