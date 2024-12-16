@@ -1,0 +1,155 @@
+/* 
+File: style.css
+GUI Assignment: Homework 4
+Content: This file uses CSS to style and structure the web app interface. 
+It focuses on creating an aesthetically pleasing and responsive design for the multiplication table generator, 
+using modern UI elements such as sliders, buttons, tabs, and tables. The file includes styles for:
+- **Body and Layout**: A grid-based structure, centered alignment, and responsive design.
+- **Input Fields and Buttons**: Styled for intuitive user interaction with hover effects.
+- **Tables**: Sticky headers/columns for usability and alternating row colors for clarity.
+- **Tabs**: Interactive tab navigation with close buttons and active states.
+- **Sliders**: Custom sliders for dynamic input control.
+- **Checklist**: Styled unordered lists for additional features.
+
+Author: Alireza Jahanban, UMass Lowell Computer Science  
+Email: Alireza_Jahanban@student.uml.edu  
+Copyright (c) 2024 by Alireza Jahanban. All rights reserved.  
+This code is free to use by anyone for business or educational purposes with credit to the author.  
+Last updated: November 2024.
+*/
+
+
+h1, label {
+    color: white;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+    background-color: #191919;
+
+    display: grid;
+    height: 40vh;
+    grid-template-rows: 1fr 1fr;
+}
+
+#inputbox input {
+    display: inline;         
+    margin: 10px auto;      
+    width: 70px;           
+    padding: 8px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #444;
+    color: #ddd;
+}
+
+p {
+    color: white;
+}
+
+button {
+    width: 100px; 
+    padding: 8px 0px;
+    font-size: 14px;
+    margin: 0px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+}
+
+.btn-word {
+    margin: auto;
+    background-color: #008fb3;
+}
+
+.board {
+    width: 5vw;
+    height: 5vw;
+    /* border: 1px dashed #aaa; */
+    background-color: #222222;
+    /* background-color: #757575; */
+
+    border-radius: 4px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    /* gap: 5px; */
+    position: relative;
+}
+
+.rack {
+    width: 15vw;
+    height: 5vw;
+    /* border: 1px dashed #aaa; */
+    background-color: #222222;
+    border-radius: 4px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* gap: 5px; */
+    position: relative;
+}
+
+.slot {
+    width: 100%;
+    height: 100%;
+    border-right: 1px solid #8888883b;
+    box-sizing: border-box;
+    border-radius: 4px;
+    position: relative;
+}
+
+.slot:last-child {
+    border: none;
+}
+
+.rack-slot {
+    border: none;
+}
+
+.double-word-score {
+    width: 80%;
+    height: 80%;
+    margin: 10%;
+    background-color: #c82f00;
+}
+
+.double-letter-score {
+    width: 80%;
+    height: 80%;
+    margin: 10%;
+    background-color: #004fcd;
+}
+
+.small-box {
+    width: 80%;
+    height: 80%;
+    margin: 10%;
+    background-color: #e2e2e2;
+    /* color: white; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: grab;
+    position: absolute; /* To make snapping work properly */
+    user-select: none;;
+}
+
+.box-hover {
+    width: 100%;
+    height: 100%;
+    margin: 0%;
+}
+
+.score {
+    position: absolute; 
+    bottom: 3px;
+    right: 3px;
+    font-size: 0.8em; /* Smaller font size */
+    font-weight: bold; 
+}

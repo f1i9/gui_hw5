@@ -1,0 +1,57 @@
+<!-- 
+File: index.html
+GUI Assignment: Homework 4
+Content: This file contains the HTML structure for a web app that generates, displays, and manages multiplication tables 
+based on user input. The app includes interactive features such as:
+- **Input Fields**: For specifying the minimum and maximum values of rows and columns.
+- **Buttons**: For generating tables, clearing fields, saving tables as tabs, deleting all tables, listing tabs, and deleting selected tabs.
+- **Sliders**: Integrated jQuery UI sliders for adjusting input values dynamically.
+- **Tabs Section**: Allows saving and viewing multiple tables, with the ability to delete individual or selected tabs.
+
+This file links to external CSS for styling and jQuery UI for enhanced interactivity. It serves as the interface for the 
+JavaScript functionality defined in `index.js`.
+
+Author: Alireza Jahanban, UMass Lowell Computer Science  
+Email: Alireza_Jahanban@student.uml.edu  
+Copyright (c) 2024 by Alireza Jahanban. All rights reserved.  
+This code is free to use by anyone for business or educational purposes with credit to the author.  
+Last updated: November 2024.
+-->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Table</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+</head>
+<body>
+
+    <div id="placeholder" class="board">
+    </div>
+
+    <div id="box1" class="rack">
+        <!-- <div class="slot">
+            <div class="small-box" id="boxA">Box A</div>
+        </div> -->
+        <!-- <div class="slot"></div>
+        <div class="slot"></div> -->
+    </div>
+
+    <div>
+        <p id="score"></p>
+        <p id="isword"></p>
+        <p id="lookup"></p>
+    </div>
+
+    <button id="myButton" class="button btn-word">Click Me!</button>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
