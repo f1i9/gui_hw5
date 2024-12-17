@@ -5,6 +5,7 @@ EXTRA CREDIT FEATURES:
 - tiles turn green when the letters put together match any word in the dictionary
 - board includes 4 bonus squares, 2 double word score, and 2 double letter score 
 - total score, highest score, and number of remaining tiles are calculated and displayed
+-
 ALL REQUIRED FEATURES ARE IMPLEMENTED, INCLUDING: 
 - game can be restarted
 - tiles can be dragged and dropped and vice versa
