@@ -177,7 +177,7 @@ button:active {
     font-size: 14px;
     border-radius: 4px;
     cursor: grab;
-    position: absolute; /* To make snapping work properly */
+    position: absolute;
     user-select: none;;
 }
 
@@ -195,7 +195,7 @@ button:active {
     position: absolute; 
     bottom: 3px;
     right: 3px;
-    font-size: 0.8em; /* Smaller font size */
+    font-size: 0.8em;
     font-weight: bold; 
 }
 
