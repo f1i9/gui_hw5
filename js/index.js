@@ -55,6 +55,7 @@ $(async function () {
         $('#lookup').html('DICTIONARY: ');     
 
         await setup();
+        $('#warning-message').empty();
     });
 
     $("#nextWordBtn").click(async function() {
@@ -74,6 +75,10 @@ $(async function () {
             $('#lookup').html('DICTIONARY: ');  
                
             await setup();
+            $('#warning-message').empty();
+        } else {
+            $('#warning-message').empty();
+            $('#warning-message').append('First play a word until the tiles turn green');
         }
     });
 });
@@ -201,6 +206,8 @@ async function setup() {
             //     ui.draggable.draggable("option", "revert", true); // Force the box to revert
             //     return;
             // }
+
+            $('#warning-message').empty();
 
 
         }

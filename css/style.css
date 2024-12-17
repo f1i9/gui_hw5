@@ -203,3 +203,9 @@ button:active {
     font-size: 1.3em;
     font-weight: bold; 
 }
+
+#warning-message {
+    color: red;
+    font-weight: bold;
+    text-transform: uppercase;
+}
