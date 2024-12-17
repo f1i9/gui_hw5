@@ -34,10 +34,11 @@ let rt = 95;
 let hs = 0;
 let total_score = 0;
 
+
 $(async function () {
     setup();
-    $('#remaining').html('RT: ' + (rt));        
-    $('#highest').html('HS: ' + (hs));   
+    $('#remaining').html('TILES LEFT: ' + (rt));        
+    $('#highest').html('HIGHEST: ' + (hs));   
 
     // ---------------------------------------------------------------------------
     //                          BUTTON
@@ -46,12 +47,12 @@ $(async function () {
         rt = 95;
         hs = 0;
         total_score = 0;
-        $('#remaining').html('RT: ' + (rt));        
-        $('#highest').html('HS: ' + (hs));
+        $('#remaining').html('TILES LEFT: ' + (rt));        
+        $('#highest').html('HIGHEST: ' + (hs));
         $('#total').html('TOTAL: ' + (total_score));
         $('#score').html('SCORE: ' + 0);
         $('#isword').html('VALIDITY: ');
-        $('#lookup').html('DICT: ');     
+        $('#lookup').html('DICTIONARY: ');     
 
         await setup();
     });
@@ -60,17 +61,17 @@ $(async function () {
 
         if (await lookup(getWord().toLowerCase())) {
             rt -= getWord().length;
-            $('#remaining').html('RT: ' + (rt));        
+            $('#remaining').html('TILES LEFT: ' + (rt));        
 
             if (await extractWordScore() >= hs) {
                 hs = await extractWordScore();
             }
-            $('#highest').html('HS: ' + (hs));
+            $('#highest').html('HIGHEST: ' + (hs));
             total_score += await extractWordScore();
             $('#total').html('TOTAL: ' + (total_score));
             $('#score').html('SCORE: ' + 0);
             $('#isword').html('VALIDITY: ');
-            $('#lookup').html('DICT: ');            
+            $('#lookup').html('DICTIONARY: ');            
         }
 
         await setup();
@@ -153,6 +154,7 @@ async function setup() {
                 return;
             }
 
+
             $(this).append(ui.draggable);
 
             ui.draggable.css({
@@ -183,9 +185,9 @@ async function setup() {
             $('#isword').html('VALIDITY: ' + getWord());
 
             if (await lookup(getWord().toLowerCase())) {
-                $('#lookup').html('DICT:  ' + "✅");
+                $('#lookup').html('DICTIONARY:  ' + "✅");
             } else {
-                $('#lookup').html('DICT:  ' + "❌");
+                $('#lookup').html('DICTIONARY:  ' + "❌");
             }
 
             if (await lookup(getWord().toLowerCase())) {
@@ -195,6 +197,14 @@ async function setup() {
             }
 
             $('#box1').children().each(function() { $(this).children().eq(0).removeClass('small-box-green')});
+
+
+            // if ((getWord() !== `getWord() : is NOT contiguous`) && (getWord() === 'getWord() : empty')) {}
+            // else {
+            //     ui.draggable.draggable("option", "revert", true); // Force the box to revert
+            //     return;
+            // }
+
 
         }
     });
@@ -247,12 +257,16 @@ function getWord() {
         });
     });
 
+    // console.log('getWork():' + w.trim() + ';');
+
+    if (w.trim() === "") { return 'getWord() : empty'; }
+
     if (!w.trim().includes(" ") && !!w.trim().length) {
-        console.log(`extractWord() : ${w.trim()} is contiguous`)
+        console.log(`getWord() : ${w.trim()} is contiguous`)
         return w.trim();
     } else {
-        console.log(`extractWord() : ${w} is NOT contiguous`)
-        return `extractWord() : ${w} is NOT contiguous`;
+        console.log(`getWord() : ${w} is NOT contiguous`)
+        return `getWord() : is NOT contiguous`;
     }
 }
 
@@ -395,15 +409,10 @@ async function lookup(word) {
 //                          TODO
 // ---------------------------------------------------------------------------
 /*
-style texts
-reset text after click me
-change click me name
-add text to red/blue boxes
 
 after playing a word, only the number of letter tiles needed to bring the player’s “hand” back
 to 7 tiles are selected
 
-any number of words can be played until the player wishes to quit or depletes all tiles
 
 Except for the first letter, all sub-subsequent letters must be placed directly next to or below
 another letter with no space. Else, they will bounce back to the “rack”.

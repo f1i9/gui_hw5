@@ -50,10 +50,10 @@ body {
     margin: auto;
     display: flex;
     flex-wrap: nowrap;
-    gap: 60px; 
+    gap: 50px; 
     align-items: center;
     font-weight: bold;
-    font-size: small;
+    font-size: 0.9vw;
 }
 
 p {
