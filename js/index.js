@@ -180,8 +180,6 @@ async function setup() {
             }
 
 
-
-
             $('#isword').html('VALIDITY: ' + getWord());
 
             if (await lookup(getWord().toLowerCase())) {
