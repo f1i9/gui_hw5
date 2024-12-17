@@ -1,23 +1,22 @@
+
 /* 
 File: style.css
-GUI Assignment: Homework 4
-Content: This file uses CSS to style and structure the web app interface. 
-It focuses on creating an aesthetically pleasing and responsive design for the multiplication table generator, 
-using modern UI elements such as sliders, buttons, tabs, and tables. The file includes styles for:
-- **Body and Layout**: A grid-based structure, centered alignment, and responsive design.
-- **Input Fields and Buttons**: Styled for intuitive user interaction with hover effects.
-- **Tables**: Sticky headers/columns for usability and alternating row colors for clarity.
-- **Tabs**: Interactive tab navigation with close buttons and active states.
-- **Sliders**: Custom sliders for dynamic input control.
-- **Checklist**: Styled unordered lists for additional features.
+Project: Scrabble Web App
+GUI Assignment: Homework 5
+Content: This file contains the CSS styles for the Scrabble web app interface. It focuses on creating a visually appealing and responsive layout for the game, with a clear and intuitive design for the game board, letter rack, and other interactive elements. The file includes styles for:
+- **Body and Layout**: A centered grid-based structure for the interface, ensuring a responsive design that adapts to different screen sizes.
+- **Buttons and Inputs**: Styled buttons for user interactions (e.g., starting a new game, submitting a word) with hover and active effects. Input fields are also styled for a clean user experience.
+- **Board and Rack**: The game board and player's rack are styled with distinct visual cues for special tiles (double-word, double-letter), making it easy for users to interact with the game.
+- **Drag & Drop**: The tiles in the rack and board have custom styling to support drag-and-drop interactions. Tiles have specific color indicators for different tile states (e.g., hovered, valid, invalid).
+- **Tile Styles**: Tiles are styled with a background color and score display, with special styling for valid tiles or tiles on special scoring positions.
+- **Score Display**: The score labels (current score, highest score, total score) are styled for clarity and easy readability.
 
 Author: Alireza Jahanban, UMass Lowell Computer Science  
 Email: Alireza_Jahanban@student.uml.edu  
 Copyright (c) 2024 by Alireza Jahanban. All rights reserved.  
 This code is free to use by anyone for business or educational purposes with credit to the author.  
-Last updated: November 2024.
+Last updated: December 2024.
 */
-
 
 h1, label {
     color: white;

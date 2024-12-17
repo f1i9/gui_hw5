@@ -1,27 +1,27 @@
 /* 
 File: index.js
-GUI Assignment: Homework 4
-Content: This file contains JavaScript functions for generating, displaying, and managing a multiplication table 
-based on user inputs from an HTML form. The `generateTable` function captures minimum and maximum row and column 
-values, validates input, and dynamically builds an HTML table containing the products of each cell. The function 
-restricts the table size to a maximum difference of 100 rows and columns. 
+Project: Scrabble Web App
+GUI Assignment: Homework 5
+Content: This file contains JavaScript functions for managing the interactive features of a Scrabble web app. The app includes various functionalities for playing Scrabble, including the generation of a game board, letter racks, and word validation. Key features include:
+- **Game Setup**: Initializes the Scrabble board and player's letter rack, including the display of special tiles such as double-word and double-letter scores.
+- **Drag & Drop**: Allows players to drag and drop letter tiles onto the board, with real-time score calculations and word validation.
+- **Word Validation**: Checks if the formed word exists in the dictionary, and updates the score based on valid words and special tiles.
+- **Score Calculation**: Calculates the score for the current word, considering special tiles (double-letter, double-word) and updates the total score.
+- **Start Over & Next Word**: Provides buttons for starting a new game and moving to the next word.
+- **Dynamic Updates**: Updates the display of the remaining tiles, current score, total score, and highest score as the game progresses.
+- **Deck Generation**: Generates a random set of letter tiles for the player’s rack from a predefined pool of tiles.
+- **Dictionary Lookup**: Validates words formed on the board against a dictionary, allowing players to check the validity of their word.
 
-Additional features include:
-- **Clear Fields**: Resets all input fields, sliders, and the table display.
-- **Tabs Management**: Allows users to save, view, and delete multiple tables as tabs. Each tab contains a distinct table and can be removed individually or in bulk.
-- **Checkbox for Tab Deletion**: Users can select and delete multiple tabs through a checkbox-based interface.
-- **Sliders for Inputs**: Integrated jQuery UI sliders allow dynamic adjustment of input values with real-time validation.
-- **Keyboard Interaction**: Pressing Enter in input fields triggers table generation.
-- **Responsive Table Updates**: Automatically updates the table when slider values are adjusted, maintaining the 100-row/column difference limit.
-
-This code is designed for interactive use in a GUI and includes event listeners for buttons, input fields, sliders, and tabs.
+This code integrates jQuery for enhanced interactivity, including drag-and-drop functionality and real-time updates.
 
 Author: Alireza Jahanban, UMass Lowell Computer Science  
 Email: Alireza_Jahanban@student.uml.edu  
 Copyright (c) 2024 by Alireza Jahanban. All rights reserved.  
 This code is free to use by anyone for business or educational purposes with credit to the author.  
-Last updated: November 2024.
+Last updated: December 2024.
 */
+
+
 
 // ---------------------------------------------------------------------------
 //                          CONFIG
@@ -313,34 +313,6 @@ function shuffle(array) {
 }
 
 // ---------------------------------------------------------------------------
-//                          calculateScore
-// ---------------------------------------------------------------------------
-// async function calculateScore(word) {
-//     try {
-//       const response = await fetch('./graphics_data/pieces.json');
-//       const jsonData = await response.json();
-  
-//       let score = 0;
-  
-//       for (let i = 0; i < word.length; i++) {
-//         const letter = word[i].toUpperCase();
-  
-//         const tile = jsonData.pieces.find(piece => piece.letter === letter);
-  
-//         if (tile) {
-//           score += tile.value;
-//         } else {
-//         //   console.log(`Letter ${letter} not found in the tile set.`);
-//         }
-//       }
-  
-//     //   console.log(`The score of the word "${word}" is: ${score}`);
-//     } catch (error) {
-//       console.error('Error loading or parsing the JSON data:', error);
-//     }
-// }
-
-// ---------------------------------------------------------------------------
 //                          getLetterScore
 // ---------------------------------------------------------------------------
 async function getLetterScore(letter) {
@@ -402,30 +374,3 @@ async function lookup(word) {
         console.error(`Error: ${error.message}`);
     }
 }
-
-// ---------------------------------------------------------------------------
-//                          TODO
-// ---------------------------------------------------------------------------
-/*
-
-after playing a word, only the number of letter tiles needed to bring the player’s “hand” back
-to 7 tiles are selected
-
-
-Except for the first letter, all sub-subsequent letters must be placed directly next to or below
-another letter with no space. Else, they will bounce back to the “rack”.
-
-if the word doesn't pass dict, it cannot be submitted
-
-remaining tiles (do it the easy way) (total = 95, after each submission, deduct)
-highest score
-add up all the score
-reset button
-next word button
-
-double check rubric
-
-remove comments
-update header comments
-push to github
-*/
