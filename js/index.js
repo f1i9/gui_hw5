@@ -71,11 +71,10 @@ $(async function () {
             $('#total').html('TOTAL: ' + (total_score));
             $('#score').html('SCORE: ' + 0);
             $('#isword').html('VALIDITY: ');
-            $('#lookup').html('DICTIONARY: ');            
+            $('#lookup').html('DICTIONARY: ');  
+               
+            await setup();
         }
-
-        await setup();
-
     });
 });
 
